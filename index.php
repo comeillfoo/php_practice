@@ -1,7 +1,4 @@
-<?php
-  if (session_status() == PHP_SESSION_NONE) 
-    session_start();
-?>
+<?php session_start(); /* need to be resumed or started for first time */ ?>
 <!DOCTYPE html>
 
 <html lang="ru">
@@ -46,7 +43,7 @@
 				<!-- task information -->
 				<tr>
 					<td>
-						<canvas id="area" width="240px" height="240px"></canvas>
+						<canvas id="area" width="480px" height="480px"></canvas>
 					</td>
 				</tr>
 			</thead>
@@ -55,7 +52,7 @@
 				<!-- input form -->
 				<tr>
 					<td>
-						<form method="GET" action="<?=explode("?", $_SERVER['REQUEST_URI'], 2)[0];?>" onsubmit="return validateForm();">
+						<form method="GET" action="<?=explode('?', $_SERVER['REQUEST_URI'], 2)[0];?>" onsubmit="return validateForm();">
 							<!-- x parameter changing -->
 							<fieldset title="Обязательно следует выбрать лишь одно значение X">
 								Изменение X:<br>
@@ -79,11 +76,11 @@
 							<!-- radius changing -->
 							<fieldset title="Обязательно следует выбрать лишь одно значение R">
 								Изменение R:<br>
-								<label>1<input id="radius-changing__radio-btn--checked" type="radio" name="radius" onclick="handle_drawing(this);" value="1" required checked></label>
-								<label>2<input type="radio" name="radius" onclick="handle_drawing(this);" value="2"></label>
-								<label>3<input type="radio" name="radius" onclick="handle_drawing(this);" value="3"></label>
-								<label>4<input type="radio" name="radius" onclick="handle_drawing(this);" value="4"></label>
-								<label>5<input type="radio" name="radius" onclick="handle_drawing(this);" value="5"></label>
+								<label>1<input id="radius-changing__radio-btn--checked" type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#3399FF');" value="1" required checked></label>
+								<label>2<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#3098F2');" value="2"></label>
+								<label>3<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#79C4F2');" value="3"></label>
+								<label>4<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#79BAF2');" value="4"></label>
+								<label>5<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#30A8F2');" value="5"></label>
 							</fieldset>
 
 							<!-- submit parameters -->
@@ -120,17 +117,18 @@
 
 							<!-- culturating new value that came from GET method -->
 							<?php
-								$start = hrtime(true);
+								// just because of fucking PHP 5
+								$start = microtime(true) * 1e9; // $start = hrtime(true) * 1000;
 								// getting certain timestamp of query sending
-								$now = date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']);
+								$now = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
 								// values that x parameter can take
 								$valid_x = ['-4', '-3', '-2', '-1', '0', '1', '2', '3', '4',];
 								// values that radius can take
 								$valid_radius = ['1', '2', '3', '4', '5',];
 								// adores trailing commas
-                $xURL = $_GET['x'];
-                $radiusURL = $_GET['radius'];
-                $yURL = trim($_GET['y']);
+                				$xURL = $_GET['x'];
+                				$radiusURL = $_GET['radius'];
+                				$yURL = trim($_GET['y']);
 							?>
 							<!-- checking if user use form not the typed parameters into URL-->
 							<?php if (isset($_GET['check']) && $_GET['check'] === 'check'): ?>
@@ -143,8 +141,9 @@
 													$radius = doubleval($radiusURL);
 													// calculating dot hitting
 													$hit = ($x <= 0 && $y - PHP_FLOAT_EPSILON >= 0 && $x * $x + $y * ($y + 2 * PHP_FLOAT_EPSILON) <= $radius * $radius) || ($x <= 0 && $y <= PHP_FLOAT_EPSILON && $x + $y - PHP_FLOAT_EPSILON >= -$radius / 2) || ($x >= 0 && $y <= PHP_FLOAT_EPSILON && $x <= $radius / 2 && $y - PHP_FLOAT_EPSILON >= -$radius);
-													$finished = hrtime(true) - $start;
-                          $_SESSION['attempts'][] = array('timestamp' => $now, 'time' => $finished, 'x' => $xURL, 'y' => $yURL, 'radius' => $radiusURL, 'result' => $hit);
+													// just because of fucking PHP 5
+													$finished = microtime(true) * 1e9 - $start; // $finished = hrtime(true) * 1000 - $start;
+                          							$_SESSION['attempts'][] = array('timestamp' => $now, 'time' => $finished, 'x' => $xURL, 'y' => $yURL, 'radius' => $radiusURL, 'result' => $hit);
 												?>
 												<tr>
 													<td><?=$now ?></td>

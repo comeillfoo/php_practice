@@ -2,7 +2,7 @@
 
 function isNotFloat(line) {
   console.log(`got ${line} argument`);
-  const floatRegex = /^-?\d+(?:[.,]\d*?)?$/;
+  const floatRegex = /^[-+]?[0-9]*\.?[0-9]+([eE][-+]?[0-9]+)?$/;
   console.log('check with regular expression');
   if (!floatRegex.test(line)) return true;
   console.log('the argument looks like float number');
