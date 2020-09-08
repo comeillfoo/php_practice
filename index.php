@@ -1,4 +1,8 @@
-<?php session_start(); /* need to be resumed or started for first time */ ?>
+<!-- need to be resumed or started for first time -->
+<?php 
+	if (session_status() == PHP_SESSION_NONE)
+		session_start();
+?>
 <!DOCTYPE html>
 
 <html lang="ru">
