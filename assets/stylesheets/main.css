@@ -3,3 +3,162 @@
 *:after {
 	box-sizing: border-box;
 }
+
+body {
+	font-family: "Helvetica", "Verdana", sans-serif;
+	font-size: 12px;
+	colour: #888;
+	background-color: #293f50;
+}
+
+caption {
+	text-align: left;
+	border-left: 8px solid #648880;
+	padding-left: 8px;
+	margin-bottom: 32px;
+}
+
+caption a {
+	font-family: "Roboto", "Verdana", "Calibri", sans-serif;
+	font-size: 36px;
+	font-variant: small-caps;
+	font-weight: lighter;
+	color: #fff;
+	line-height: 200%;
+	vertical-align: center;
+	text-decoration: none;
+}
+
+caption a:hover {
+	color: #648880;
+	text-decoration: underline;
+
+}
+
+table {
+	max-width: 960px;
+	margin: 0 auto;
+	border-spacing: 0 0;
+}
+
+td[rowspan="4"] {
+	border: 2px double #555;
+	background-color: #eaeaea;
+	width: 460px;
+	padding: 8px 8px 8px 8px;
+}
+
+.col1-3 {
+	display: inline-block;
+	min-width: 300px;
+	min-height: 110px;
+	vertical-align: top;
+	margin: 1.5em 0 1.5em 1em;
+	padding: auto 0;
+}
+
+.field__submitting {
+	padding: 0;
+	margin: 0;
+	width: inherit;
+}
+
+#submit-btn {
+	width: 960px;
+	margin: 0 auto;
+	padding: 2px 2px;
+	font-size: 30px;
+	text-align: center;
+	display: table-cell;
+
+	text-transform: uppercase;
+	border: 0;
+	color: white;
+	background-color: #293f50;
+	line-height: 2em;
+	vertical-align: center;
+}
+
+#submit-btn:hover {
+	color: #648880;
+	background-color: white;
+}
+
+.header__field--title {
+	font-size: 24px;
+	text-align: right;
+	color: #648880;
+}
+
+.header__field--title::after {
+	content: ":";
+}
+
+.header__field--filled {
+	font-size: 24px;
+	font-style: italic;
+	text-align: left;
+	text-decoration: underline;
+	color: #eaeaea;
+}
+
+fieldset {
+	font-size: 18px;
+	font-family: "Roboto", "Helvetica", "Verdana", sans-serif;
+	text-align: left;
+	color: #648880;
+	font-weight: 400;
+	border: 2px solid #648880;
+	background-color: white;
+}
+
+input[type="text"] {
+	font-size: 18px;
+	margin-right: 0.2em;
+	float: right;
+}
+
+.resulting-table {
+	font-family: "Lucida Console", "Consolas", "Courier New", "Courier", monospace;
+	font-size: 16px;
+	width: 100%;
+}
+
+.resulting-table th, td {
+	vertical-align: top;
+	border-bottom: 1px solid #888;
+}
+
+.resulting-table th {
+	text-align: right;
+}
+
+.resulting-table>thead th {
+	line-height: 44px;
+	color: #648880;
+	font-size: 16px;
+	padding-right: 15px;
+}
+
+.resulting-table tr:nth-child(even) {
+	background-color: #84a366;
+	color: #a9b2b9;
+}
+
+.resulting-table tr:nth-child(odd) {
+	background-color: #eaeaea;
+	color: #a9b2b9;
+}
+
+.resulting-table>tbody td:firts-of-type {
+	padding-right: 15px;
+}
+
+.resulting-table>tbody td:last-of-type {
+	padding-left: 15px;
+}
+
+.resulting-table>tbody td:only-of-type {
+	padding-right: 0;
+	padding-left: 0;
+}

@@ -12,79 +12,71 @@
 	<body>
 		<table>
 			<!-- page title -->
-			<caption>Попадание точек в область</caption>
+			<caption><a href="index.php">Точки на области | Dots among the Area</a></caption>
 
 			<thead>
 				<!-- author's information -->
 				<tr>
+					<!-- task information -->
+					<td rowspan="4" colspan="1">
+						<canvas id="area" width="460px" height="460px"></canvas>
+					</td>
 					<!-- surname -->
-					<th>Фамилия</th>
-					<td>Ханнанов</td>
+					<th class="header__field header__field--title">Фамилия | Surname</th>
+					<td class="header__field header__field--filled">Ханнанов</td>
 				</tr>
 
 				<tr>
 					<!-- name -->
-					<th>Имя</th>
-					<td>Ленар</td>
+					<th class="header__field header__field--title">Имя | Name</th>
+					<td class="header__field header__field--filled">Ленар</td>
 				</tr>
 
 				<tr>
 					<!-- group -->
-					<th>Группа</th>
-					<td>P3214</td>
+					<th class="header__field header__field--title">Группа | Group</th>
+					<td class="header__field header__field--filled">P3214</td>
 				</tr>
 
 				<tr>
 					<!-- variant -->
-					<th>Вариант</th>
-					<td>2518</td>
-				</tr>
-
-				<!-- task information -->
-				<tr>
-					<td>
-						<canvas id="area" width="480px" height="480px"></canvas>
-					</td>
+					<th class="header__field header__field--title">Вариант | Variant</th>
+					<td class="header__field header__field--filled">2518</td>
 				</tr>
 			</thead>
 
 			<tbody>
 				<!-- input form -->
-				<tr>
-					<td>
+				<tr class="sending-form">
+					<td colspan="3">
 						<form method="GET" action="<?=explode('?', $_SERVER['REQUEST_URI'], 2)[0];?>" onsubmit="return validateForm();">
 							<!-- x parameter changing -->
-							<fieldset title="Обязательно следует выбрать лишь одно значение X">
-								Изменение X:<br>
+							<fieldset class="col1-3" title="Обязательно следует выбрать лишь одно значение X">
+								Изменение X<br>
 								<label>-4<input type="radio" name="x" value="-4" required></label>
-								<label>-3<input type="radio" name="x" value="-3"></label>
-								<label>-2<input type="radio" name="x" value="-2"></label>
 								<label>-1<input type="radio" name="x" value="-1"></label>
-								<label>0<input type="radio" name="x" value="0"></label>
-								<label>1<input type="radio" name="x" value="1"></label>
-								<label>2<input type="radio" name="x" value="2"></label>
-								<label>3<input type="radio" name="x" value="3"></label>
-								<label>4<input type="radio" name="x" value="4"></label>
-							</fieldset>
-
-							<!-- y parameter changing -->
-							<fieldset title="Значение Y должно быть действительным число в интервале от -5 до -3 (десятичный разделитель &mdash; точка &lt;.&gt;)">
-								Изменение Y:
+								<label>&nbsp;2<input type="radio" name="x" value="2"></label><br>
+								<label>-3<input type="radio" name="x" value="-3"></label>
+								<label>&nbsp;0<input type="radio" name="x" value="0"></label>
+								<label>&nbsp;3<input type="radio" name="x" value="3"></label>
+								<br>
+								<label>-2<input type="radio" name="x" value="-2"></label>
+								<label>&nbsp;1<input type="radio" name="x" value="1"></label>
+								<label>&nbsp;4<input type="radio" name="x" value="4"></label>
+							</fieldset><!-- y parameter changing 
+							--><fieldset class="col1-3" title="Значение Y должно быть действительным число в интервале от -5 до -3 (десятичный разделитель &mdash; точка &lt;.&gt;)">
+								Изменение Y<br>
 								<input id="js-y-validation" type="text" name="y" placeholder="Y&isin;(-5; -3)" required>
-							</fieldset>
-
-							<!-- radius changing -->
-							<fieldset title="Обязательно следует выбрать лишь одно значение R">
-								Изменение R:<br>
+							</fieldset><!-- radius changing
+							--><fieldset class="col1-3" title="Обязательно следует выбрать лишь одно значение R">
+								Изменение R<br>
 								<label>1<input id="radius-changing__radio-btn--checked" type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#3399FF');" value="1" required checked></label>
 								<label>2<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#3098F2');" value="2"></label>
 								<label>3<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#79C4F2');" value="3"></label>
 								<label>4<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#79BAF2');" value="4"></label>
 								<label>5<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#30A8F2');" value="5"></label>
-							</fieldset>
-
-							<!-- submit parameters -->
-							<fieldset>
+							</fieldset><!-- submit parameters 
+							--><fieldset class="field__submitting">
 								<input id="submit-btn" type="submit" name="check" value="check" title = "Кнопка отправки формы: следует нажать лишь при установке валидных параметров">
 							</fieldset>
 						</form>
@@ -92,11 +84,11 @@
 				</tr>
 				<!-- table with results -->
 				<tr>
-					<td>
-						<table>
+					<td colspan="3">
+						<table class="resulting-table">
 							<thead>
 								<tr>
-									<th>Время создания [ГГГГ-мм-дд чч:мм:cc]</th><th>Время, нс</th><th>X</th><th>Y</th><th>R</th><th>Результат [yes/no]</th>
+									<th>Время создания</th><th>Время, нс</th><th>X</th><th>Y</th><th>R</th><th>Результат [yes/no]</th>
 								</tr>
 							</thead>
 
