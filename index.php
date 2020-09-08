@@ -7,7 +7,6 @@
 
 <html lang="ru">
 	<head>
-		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
 		<title>Точки на области | P3214 Ханнанов Ленар 2518</title>
 		<!-- addition that included files like stylesheets or scripts -->
 		<link rel="stylesheet" type="text/css" href="assets/stylesheets/main.css">
@@ -23,7 +22,7 @@
 				<tr>
 					<!-- task information -->
 					<td rowspan="4" colspan="1">
-						<canvas id="area" width="460px" height="460px"></canvas>
+						<canvas id="area" width="460" height="460"></canvas>
 					</td>
 					<!-- surname -->
 					<th class="header__field header__field--title">Фамилия | Surname</th>
@@ -75,10 +74,10 @@
 							--><fieldset class="col1-3" title="Обязательно следует выбрать лишь одно значение R">
 								Изменение R<br>
 								<label>1<input id="radius-changing__radio-btn--checked" type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#3399FF');" value="1" required checked></label>
-								<label>2<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#3098F2');" value="2"></label>
-								<label>3<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#79C4F2');" value="3"></label>
-								<label>4<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#79BAF2');" value="4"></label>
-								<label>5<input type="radio" name="radius" onclick="handle_drawing(this, 5, 1, area_colour='#30A8F2');" value="5"></label>
+								<label>2<input type="radio" name="radius" onclick='handle_drawing(this, 5, 1, "#3098F2");' value="2"></label>
+								<label>3<input type="radio" name="radius" onclick='handle_drawing(this, 5, 1, "#79C4F2");' value="3"></label>
+								<label>4<input type="radio" name="radius" onclick='handle_drawing(this, 5, 1, "#79BAF2");' value="4"></label>
+								<label>5<input type="radio" name="radius" onclick='handle_drawing(this, 5, 1, "#30A8F2");' value="5"></label>
 							</fieldset><!-- submit parameters 
 							--><fieldset class="field__submitting">
 								<input id="submit-btn" type="submit" name="check" value="check" title = "Кнопка отправки формы: следует нажать лишь при установке валидных параметров">
@@ -118,9 +117,9 @@
 								// getting certain timestamp of query sending
 								$now = date('Y-m-d H:i:s', $_SERVER['REQUEST_TIME']);
 								// values that x parameter can take
-								$valid_x = ['-4', '-3', '-2', '-1', '0', '1', '2', '3', '4',];
+								$valid_x = ['-4', '-3', '-2', '-1', '0', '1', '2', '3', '4'];
 								// values that radius can take
-								$valid_radius = ['1', '2', '3', '4', '5',];
+								$valid_radius = ['1', '2', '3', '4', '5'];
 								// adores trailing commas
                 				$xURL = $_GET['x'];
                 				$radiusURL = $_GET['radius'];
@@ -166,7 +165,7 @@
 		</table>
 
 		<!-- validation and drawing scripts at the bottom for best perfomance -->
-		<script type="text/javascript" src="assets/scripts/parameter_y_validator.js" async></script>
-		<script type="text/javascript" src="assets/scripts/area_drawer.js" async></script>
+		<script type="text/javascript" src="assets/scripts/parameter_y_validator.js"></script>
+		<script type="text/javascript" src="assets/scripts/area_drawer.js"></script>
 	</body>
 </html>

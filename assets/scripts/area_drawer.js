@@ -1,8 +1,30 @@
 "use strict"
 
+/**
+ * Function gets GET-parameter by
+ * its name from URL
+ */
+function getGETParameter(name) {
+	let url_string = window.location.href;
+	let url = new URL(url_string);
+	let param = url.searchParams.get(name);
+	url = null; // maybe memory optimization
+	return param;
+}
+
+/**
+ * Function checks if URL has 'check'
+ * GET-parameter so form was used to
+ * send x, y and radius parameters too
+ */
+function issetCorrectGET() {
+	const keyword = "check";
+	return getGETParameter(keyword) === keyword;
+}
+
 function handle_drawing(radio_btn, max_radius=5, min_radius=1, area_colour = "#3399ff") {
 	// get radius value
-	const realRadius = issetCorrectGET()? getGETParameter("radius") : radio_btn.value;
+	const realRadius = issetCorrectGET()? getGETParameter('radius') : radio_btn.value;
 	const newRealRadius = (max_radius - realRadius + min_radius);
 	// get canvas
 	console.log('looking for drawing area');
@@ -245,28 +267,6 @@ function handle_drawing(radio_btn, max_radius=5, min_radius=1, area_colour = "#3
 
 		ctx.fillRect(x, y, length, ctx.lineWidth);
 		ctx.fillText(sign, x + 1.5 * length, y - 0.25 * length);
-	}
-
-	/**
-	 * Function gets GET-parameter by
-	 * its name from URL
-	 */
-	function getGETParameter(name) {
-		let url_string = window.location.href;
-		let url = new URL(url_string);
-		let param = url.searchParams.get(name);
-		url = null; // maybe memory optimization
-		return param;
-	}
-
-	/**
-	 * Function checks if URL has 'check'
-	 * GET-parameter so form was used to
-	 * send x, y and radius parameters too
-	 */
-	function issetCorrectGET() {
-		const keyword = "check";
-		return getGETParameter(keyword) === keyword;
 	}
 
 	/**
