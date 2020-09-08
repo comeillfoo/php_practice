@@ -121,6 +121,10 @@
                 				$xURL = $_GET['x'];
                 				$radiusURL = $_GET['radius'];
                 				$yURL = trim($_GET['y']);
+
+                				// defining EPSILON constant exactly for PHP5
+                				if (startsWith(phpversion(), '5'))
+                					define('PHP_FLOAT_EPSILON', 0.000001);
 							?>
 							<!-- checking if user use form not the typed parameters into URL-->
 							<?php if (isset($_GET['check']) && $_GET['check'] === 'check'): ?>
@@ -158,7 +162,7 @@
 		</table>
 
 		<!-- validation and drawing scripts at the bottom for best perfomance -->
-		<script type="text/javascript" src="assets/scripts/parameter_y_validator.js"></script>
-		<script type="text/javascript" src="assets/scripts/area_drawer.js"></script>
+		<script type="text/javascript" src="assets/scripts/parameter_y_validator.js" async></script>
+		<script type="text/javascript" src="assets/scripts/area_drawer.js" async></script>
 	</body>
 </html>
